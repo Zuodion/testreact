@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-
+import AnotherComponent from './AnotherComponent';
+import { useEffect, useState } from 'react'
 function App() {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    addCount(5);
+  },[])
+
+  function addCount(value) {
+    setCount(old => old+value);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Ви натиснули {count} разів</p>
+      <button onClick={() => addCount(1) }>
+        Натисни мене
+      </button>
+      <AnotherComponent count={count}/>
     </div>
   );
 }
